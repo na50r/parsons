@@ -1,0 +1,13 @@
+    @Provide
+    Arbitrary<ABC> invalidTrianglesGenerator() {
+        Arbitrary<Integer> normalSide1 = Arbitraries.integers();
+        Arbitrary<Integer> normalSide2 = Arbitraries.integers();
+        Arbitrary<Integer> biggerSide = Arbitraries.integers();
+        Arbitrary<ABC> biggerA = Combinators.combine(normalSide1, normalSide2, biggerSide).as(ABC::new)
+                .filter(k -> k.a >= k.b + k.c);
+        Arbitrary<ABC> biggerB = Combinators.combine(normalSide1, normalSide2, biggerSide).as(ABC::new)
+                .filter(k -> k.b >= k.a + k.c);
+        Arbitrary<ABC> biggerC = Combinators.combine(normalSide1, normalSide2, biggerSide).as(ABC::new)
+                .filter(k -> k.c >= k.a + k.b);
+        return Arbitraries.oneOf(biggerA, biggerB, biggerC);
+    }

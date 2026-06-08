@@ -1,0 +1,10 @@
+    @Test
+    void emptyOrder() {
+        BookRepository bookRepo = mock(BookRepository.class);
+        BuyBookProcess process = mock(BuyBookProcess.class);
+        BookStore bookStore = new BookStore(bookRepo, process);
+        Map<String, Integer> orderMap = new HashMap<>();
+        Overview overview = bookStore.getPriceForCart(orderMap);
+        assertThat(overview.getTotalPrice()).isEqualTo(0);
+        assertThat(overview.getUnavailable()).isEmpty();
+    }

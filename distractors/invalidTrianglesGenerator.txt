@@ -1,0 +1,5 @@
+return Arbitraries.of(biggerA, biggerB, biggerC);
+.filter(k -> k.a > k.b + k.c);
+Arbitrary<Integer> normalSide1 = Arbitraries.strings();
+Arbitrary<ABC> biggerA = Combinators.combine(normalSide1, normalSide2).as(ABC::new)
+return Arbitraries.oneOf(biggerA, biggerB)

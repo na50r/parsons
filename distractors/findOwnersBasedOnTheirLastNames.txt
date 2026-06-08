@@ -1,0 +1,5 @@
+assertThat(all).hasSize(1).containsExactlyInAnyOrder(owner1.toOwnerInfo());
+ListOfOwnersPage listPage = page.findOwners("John");
+List<OwnerInfo> all = listPage.getAll();
+AddOwnerInfo owner1 = new AddOwnerInfo("John", "Smith", "some address", "some city", "11111");
+containsExactlyInAnyOrder(owner2.toOwnerInfo(), owner1.toOwnerInfo());

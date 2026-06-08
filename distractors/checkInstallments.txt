@@ -1,0 +1,5 @@
+verify(repository, times(5)).persist(captor.capture());
+assertThat(allInstallments).hasSize(5);
+ArgumentCaptor<Payment> captor = ArgumentCaptor.forClass(Payment.class);
+final LocalDate dueDate = LocalDate.now().minusMonths(month);
+ShoppingCart cart = new ShoppingCart(0.0);

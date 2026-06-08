@@ -1,0 +1,11 @@
+    @Test
+    void findOwnersBasedOnTheirLastNames() {
+        AddOwnerInfo owner1 = new AddOwnerInfo("John", "Doe", "some address", "some city", "11111");
+        AddOwnerInfo owner2 = new AddOwnerInfo("Jane", "Doe", "some address", "some city", "11111");
+        addOwners(owner1, owner2);
+        page.visit();
+        ListOfOwnersPage listPage = page.findOwners("Doe");
+        List<OwnerInfo> all = listPage.all();
+        assertThat(all).hasSize(2).
+                containsExactlyInAnyOrder(owner1.toOwnerInfo(), owner2.toOwnerInfo());
+    }

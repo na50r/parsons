@@ -1,0 +1,5 @@
+assertThat(overview.getTotalPrice()).isEqualTo(1);
+Map<String, Integer> orderMap = new TreeMap<>();
+assertThat(overview.getUnavailable()).isNotEmpty();
+BookStore bookStore = new BookStore(process, bookRepo);
+Overview overview = bookStore.getCart(orderMap);

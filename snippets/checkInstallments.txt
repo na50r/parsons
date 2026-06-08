@@ -1,0 +1,17 @@
+    @Test
+    void checkInstallments() {
+        ShoppingCart cart = new ShoppingCart(100.0);
+        InstallmentGenerator generator = new InstallmentGenerator(repository);
+        generator.generateInstallments(cart, 10);
+        ArgumentCaptor<Installment> captor = ArgumentCaptor.forClass(Installment.class);
+        verify(repository,times(10)).persist(captor.capture());
+        List<Installment> allInstallments = captor.getAllValues();
+        assertThat(allInstallments)
+                .hasSize(10)
+                .allMatch(i -> i.getValue() == 10);
+        for(int month = 1; month <= 10; month++) {
+            final LocalDate dueDate = LocalDate.now().plusMonths(month);
+            assertThat(allInstallments)
+                    .anyMatch(i -> i.getDate().equals(dueDate));
+        }
+    }
