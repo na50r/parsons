@@ -37,7 +37,7 @@ if __name__ == "__main__":
     with open("output/problems.md", "w") as pf, open("output/solutions.md", "w") as sf:
         for i, (scrambled, solution) in enumerate(problems, start=1):
             # Problems file
-            pf.write(f"# Problem {i}\n\n```\n")
+            pf.write(f"# Problem {i}\n\n```java\n")
             for idx, line in scrambled:
                 pf.write(f"{idx}. {line}\n")
             pf.write("```\n\n")
